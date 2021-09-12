@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MetricsManager.Controllers
+namespace MetricsAgent.Controllers
 {
-    [Route("api/metrics/dotnet/errors-count")]
+    [Route("api/metrics/hdd/left")]
     [ApiController]
-    public class DotNetMetricsController : ControllerBase
+    public class HddMetricsController : ControllerBase
     {
 
         [HttpGet("from/{fromTime}/to/{toTime}")]

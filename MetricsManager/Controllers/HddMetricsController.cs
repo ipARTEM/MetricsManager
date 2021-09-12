@@ -11,5 +11,17 @@ namespace MetricsManager.Controllers
     [ApiController]
     public class HddMetricsController : ControllerBase
     {
+
+        [HttpGet("from/{fromTime}/to/{toTime}")]
+        public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        {
+            return Ok();
+        }
+
+        [HttpGet("from/{fromTime}/to/{toTime}")]
+        public IActionResult GetMetricsFromAllCluster([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        {
+            return Ok();
+        }
     }
 }
