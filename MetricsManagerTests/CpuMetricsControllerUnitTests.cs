@@ -1,5 +1,6 @@
 ﻿using MetricsManager.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,13 @@ namespace MetricsManagerTests
     public class CpuMetricsControllerUnitTests
     {
         private CpuMetricsController controller;
+        private readonly ILogger<CpuMetricsController> _logger;
 
-        public CpuMetricsControllerUnitTests()
+
+        public CpuMetricsControllerUnitTests(ILogger<CpuMetricsController> logger)
         {
-            controller = new CpuMetricsController();
+            _logger = logger;
+            _logger.LogDebug(1, "NLog встроен в CpuMetricsController");
         }
 
         [Fact]

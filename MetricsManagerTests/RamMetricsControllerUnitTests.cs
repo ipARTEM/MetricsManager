@@ -11,11 +11,11 @@ namespace MetricsManagerTests
 {
     public class RamMetricsControllerUnitTests
     {
-        private CpuMetricsController controller;
+        private RamMetricsController controller;
 
         public RamMetricsControllerUnitTests()
         {
-            controller = new CpuMetricsController();
+            controller = new RamMetricsController();
         }
 
         [Fact]
