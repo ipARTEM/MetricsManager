@@ -9,13 +9,14 @@ using Xunit;
 
 namespace MetricsManagerTests
 {
-    public class CpuMetricsControllerUnitTests
+    public class NetworkMetricsControllerUnitTests
     {
-        private CpuMetricsController controller;
 
-        public CpuMetricsControllerUnitTests()
+        private NetworkMetricsController _controller;
+
+        public NetworkMetricsControllerUnitTests()
         {
-            controller = new CpuMetricsController();
+            _controller = new();
         }
 
         [Fact]
@@ -27,7 +28,7 @@ namespace MetricsManagerTests
             var toTime = TimeSpan.FromSeconds(100);
 
             //Act
-            var result = controller.GetMetricsFromAgent(agentId, fromTime, toTime);
+            var result = _controller.GetMetricsFromAgent(agentId, fromTime, toTime);
 
             // Assert
             _ = Assert.IsAssignableFrom<IActionResult>(result);
@@ -41,14 +42,13 @@ namespace MetricsManagerTests
             TimeSpan timeTo = TimeSpan.FromSeconds(100);
 
             //act      
-            var result = controller.GetMetricsFromAllCluster(timeFrom, timeTo);
+            var result = _controller.GetMetricsFromAllCluster(timeFrom, timeTo);
 
             // assert    
             _ = Assert.IsAssignableFrom<IActionResult>(result);
 
         }
 
+
     }
 }
-
-

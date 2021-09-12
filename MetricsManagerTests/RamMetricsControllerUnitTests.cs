@@ -9,11 +9,11 @@ using Xunit;
 
 namespace MetricsManagerTests
 {
-    public class CpuMetricsControllerUnitTests
+    public class RamMetricsControllerUnitTests
     {
         private CpuMetricsController controller;
 
-        public CpuMetricsControllerUnitTests()
+        public RamMetricsControllerUnitTests()
         {
             controller = new CpuMetricsController();
         }

@@ -12,14 +12,27 @@ namespace MetricsManager.Controllers
     public class NetworkMetricsController : ControllerBase
     {
 
-        [HttpGet("from/{fromTime}/to/{toTime}")]
+        [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
             return Ok();
         }
 
-        [HttpGet("from/{fromTime}/to/{toTime}")]
+        [HttpGet("cluster/from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsFromAllCluster([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        {
+            return Ok();
+        }
+
+        //за всё время
+        [HttpGet("agent/{agentId}")]
+        public IActionResult GetMetricsFromAgent([FromRoute] int agentId)
+        {
+            return Ok();
+        }
+
+        [HttpGet("cluster")]
+        public IActionResult GetMetricsFromCluster()
         {
             return Ok();
         }

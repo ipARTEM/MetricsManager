@@ -9,13 +9,13 @@ using Xunit;
 
 namespace MetricsManagerTests
 {
-    public class CpuMetricsControllerUnitTests
+    public class DotNetMetricsControllerUnitTests
     {
-        private CpuMetricsController controller;
+        private DotNetMetricsController controller;
 
-        public CpuMetricsControllerUnitTests()
+        public DotNetMetricsControllerUnitTests()
         {
-            controller = new CpuMetricsController();
+            controller = new DotNetMetricsController();
         }
 
         [Fact]
@@ -50,5 +50,4 @@ namespace MetricsManagerTests
 
     }
 }
-
 

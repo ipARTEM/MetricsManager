@@ -1,4 +1,4 @@
-﻿using MetricsManager.Controllers;
+﻿using MetricsAgent.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,15 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MetricsManagerTests
+namespace MetricsAgentTests
 {
-    public class CpuMetricsControllerUnitTests
+    public class DotNetMetricsControllerUnitTests
     {
-        private CpuMetricsController controller;
+        private DotNetMetricsController controller;
 
-        public CpuMetricsControllerUnitTests()
+        public DotNetMetricsControllerUnitTests()
         {
-            controller = new CpuMetricsController();
+            controller = new DotNetMetricsController();
         }
 
         [Fact]
@@ -50,5 +50,4 @@ namespace MetricsManagerTests
 
     }
 }
-
 

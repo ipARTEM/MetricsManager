@@ -9,13 +9,13 @@ using Xunit;
 
 namespace MetricsManagerTests
 {
-    public class CpuMetricsControllerUnitTests
+    public class HddMetricsControllerUnitTests
     {
-        private CpuMetricsController controller;
+        private HddMetricsController controller;
 
-        public CpuMetricsControllerUnitTests()
+        public HddMetricsControllerUnitTests()
         {
-            controller = new CpuMetricsController();
+            controller = new HddMetricsController();
         }
 
         [Fact]
@@ -50,5 +50,4 @@ namespace MetricsManagerTests
 
     }
 }
-
 
