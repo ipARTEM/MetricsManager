@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MetricsAgent.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,7 +11,7 @@ namespace MetricsAgent.Controllers
 {
     [Route("api/metrics/hdd/left")]
     [ApiController]
-    public class HddMetricsController : ControllerBase
+    public class HddMetricsController : BaseController<HddMetricsDto>
     {
         private readonly ILogger<HddMetricsController> _logger;
         public HddMetricsController(ILogger<HddMetricsController> logger)
@@ -19,12 +20,20 @@ namespace MetricsAgent.Controllers
             _logger.LogDebug(1, "NLog встроен в HddMetricsController");
         }
 
-        [HttpGet("from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
-        {
-            _logger.LogInformation("Сообщение из  GetMetricsFromAgent");
-            return Ok();
-        }
+        //public HddMetricsDto GetMetricsFromAgent(
+        //     [FromRoute] int agentId,
+        //    [FromRoute] TimeSpan fromTime,
+        //    [FromRoute] TimeSpan toTime)
+        //{
+        //    return new HddMetricsDto();
+        //}
+
+        //[HttpGet("from/{fromTime}/to/{toTime}")]
+        //public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        //{
+        //    _logger.LogInformation("Сообщение из  GetMetricsFromAgent");
+        //    return Ok();
+        //}
 
         [HttpGet("from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsFromAllCluster([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)

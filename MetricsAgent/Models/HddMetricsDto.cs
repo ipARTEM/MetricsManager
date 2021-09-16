@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 
 namespace MetricsAgent.Models
 {
-    public class AllCpuMetricsResponse
+    public class HddMetricsDto
     {
-        public List<CpuMetricsDto> Metrics { get; set; }
+        public long Id { get; set; }
+
+        public Guid UniqueName { get; set; }
 
     }
 }

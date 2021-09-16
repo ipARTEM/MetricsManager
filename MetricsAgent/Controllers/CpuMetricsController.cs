@@ -12,14 +12,14 @@ namespace MetricsAgent.Controllers
 {
     [Route("api/metrics/cpu")]
     [ApiController]
-    public class CpuMetricsController : ControllerBase
+    public class CpuMetricsController : BaseController<CpuMetricsDto>
     {
         private readonly ILogger<CpuMetricsController> _logger;
-        public CpuMetricsController(ILogger<CpuMetricsController> logger)
-        {
-            _logger = logger;
-            _logger.LogDebug(1, "NLog встроен в CpuMetricsController");
-        }
+        //public CpuMetricsController(ILogger<CpuMetricsController> logger)
+        //{
+        //    _logger = logger;
+        //    _logger.LogDebug(1, "NLog встроен в CpuMetricsController");
+        //}
 
         [HttpGet]
         public IActionResult GetHi()
@@ -30,9 +30,11 @@ namespace MetricsAgent.Controllers
 
         private ICpuMetricsRepository repository;
 
-        public CpuMetricsController(ICpuMetricsRepository repository)
+        public CpuMetricsController(ICpuMetricsRepository repository, ILogger<CpuMetricsController> logger)
         {
             this.repository = repository;
+            _logger = logger;
+            _logger.LogDebug(1, "NLog встроен в CpuMetricsController");
         }
 
         [HttpPost("create")]
@@ -56,12 +58,12 @@ namespace MetricsAgent.Controllers
 
             var response = new AllCpuMetricsResponse()
             {
-                Metrics = new List<CpuMetricDto>()
+                Metrics = new List<CpuMetricsDto>()
             };
 
             foreach (var metric in metrics)
             {
-                response.Metrics.Add(new CpuMetricDto { Time = metric.Time, Value = metric.Value, Id = metric.Id });
+                response.Metrics.Add(new CpuMetricsDto { Time = metric.Time, Value = metric.Value, Id = metric.Id });
             }
 
             return Ok(response);
@@ -93,6 +95,7 @@ namespace MetricsAgent.Controllers
         public IActionResult TryToInsertAndRead()
         {
             _logger.LogInformation("Сообщение из  TryToInsertAndRead");
+
             // Создаем строку подключения в виде базы данных в оперативной памяти
             string connectionString = "Data Source=:memory:";
 
@@ -158,16 +161,6 @@ namespace MetricsAgent.Controllers
                     return Ok(returnArray);
                 }
             }
-        }
-
-
-
-
-        [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
-        {
-            _logger.LogInformation("Сообщение из  GetMetricsFromAgent");
-            return Ok();
         }
 
         [HttpGet("cluster/from/{fromTime}/to/{toTime}")]

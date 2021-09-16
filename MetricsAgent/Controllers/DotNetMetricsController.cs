@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MetricsAgent.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -18,6 +19,27 @@ namespace MetricsAgent.Controllers
             _logger = logger;
             _logger.LogDebug(1, "NLog встроен в DotNetMetricsController");
         }
+
+        private DotNetMetricsController repository;
+
+        //public DotNetMetricsController(ICpuMetricsRepository repository)
+        //{
+        //    this.repository = repository;
+        //}
+
+        //[HttpPost("create")]
+        //public IActionResult Create([FromBody] CpuMetricCreateRequest request)
+        //{
+        //    _logger.LogInformation("Сообщение из  Create");
+        //    repository.Create(new CpuMetric
+        //    {
+        //        Time = request.Time,
+        //        Value = request.Value
+        //    });
+
+        //    return Ok();
+        //}
+
 
         [HttpGet("from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)

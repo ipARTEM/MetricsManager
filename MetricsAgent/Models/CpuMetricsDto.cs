@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace MetricsAgent.Models
 {
-    public class CpuMetricDto
+    public class CpuMetricsDto
     {
+        public int Id { get; set; }
+        
+        public int Value { get; set; }
 
         public TimeSpan Time { get; set; }
-        public int Value { get; set; }
-        public int Id { get; set; }
 
     }
 }
