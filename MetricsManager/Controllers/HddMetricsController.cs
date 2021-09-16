@@ -16,7 +16,7 @@ namespace MetricsManager.Controllers
         public HddMetricsController(ILogger<HddMetricsController> logger)
         {
             _logger = logger;
-            _logger.LogDebug(1, "NLog встроен в CpuMetricsController");
+            _logger.LogDebug(1, "NLog встроен в HddMetricsController");
         }
 
 

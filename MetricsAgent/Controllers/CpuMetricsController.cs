@@ -1,6 +1,7 @@
 ﻿using MetricsAgent.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -13,9 +14,17 @@ namespace MetricsAgent.Controllers
     [ApiController]
     public class CpuMetricsController : ControllerBase
     {
+        private readonly ILogger<CpuMetricsController> _logger;
+        public CpuMetricsController(ILogger<CpuMetricsController> logger)
+        {
+            _logger = logger;
+            _logger.LogDebug(1, "NLog встроен в CpuMetricsController");
+        }
+
         [HttpGet]
         public IActionResult GetHi()
         {
+            _logger.LogInformation("Сообщение из  GetHi");
             return Ok("Hi, I am cpu controller");
         }
 
@@ -29,6 +38,7 @@ namespace MetricsAgent.Controllers
         [HttpPost("create")]
         public IActionResult Create([FromBody] CpuMetricCreateRequest request)
         {
+            _logger.LogInformation("Сообщение из  Create");
             repository.Create(new CpuMetric
             {
                 Time = request.Time,
@@ -41,6 +51,7 @@ namespace MetricsAgent.Controllers
         [HttpGet("all")]
         public IActionResult GetAll()
         {
+            _logger.LogInformation("Сообщение из  GetAll");
             var metrics = repository.GetAll();
 
             var response = new AllCpuMetricsResponse()
@@ -62,6 +73,7 @@ namespace MetricsAgent.Controllers
         [HttpGet("sql-test")]
         public IActionResult TryToSqlLite()
         {
+            _logger.LogInformation("Сообщение из  TryToSqlLite");
             string cs = "Data Source=:memory:";
             string stm = "SELECT SQLITE_VERSION()";
 
@@ -80,6 +92,7 @@ namespace MetricsAgent.Controllers
         [HttpGet("sql-read-write-test")]
         public IActionResult TryToInsertAndRead()
         {
+            _logger.LogInformation("Сообщение из  TryToInsertAndRead");
             // Создаем строку подключения в виде базы данных в оперативной памяти
             string connectionString = "Data Source=:memory:";
 
@@ -153,12 +166,14 @@ namespace MetricsAgent.Controllers
         [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
+            _logger.LogInformation("Сообщение из  GetMetricsFromAgent");
             return Ok();
         }
 
         [HttpGet("cluster/from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsFromAllCluster([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
+            _logger.LogInformation("Сообщение из  GetMetricsFromAllCluster");
             return Ok();
         }
 
@@ -166,12 +181,14 @@ namespace MetricsAgent.Controllers
         [HttpGet("agent/{agentId}")]
         public IActionResult GetMetricsFromAgent([FromRoute] int agentId)
         {
+            _logger.LogInformation("Сообщение из  GetMetricsFromAgent");
             return Ok();
         }
 
         [HttpGet("cluster")]
         public IActionResult GetMetricsFromCluster()
         {
+            _logger.LogInformation("Сообщение из  GetMetricsFromCluster");
             return Ok();
         }
 
