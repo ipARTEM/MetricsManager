@@ -23,13 +23,14 @@ namespace MetricsManager.Controllers
         [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
-            _logger.LogInformation("Сообщение в логер!");
+            _logger.LogInformation("Сообщение в логер из GetMetricsFromAgent");
             return Ok();
         }
 
         [HttpGet]
         public IActionResult GetHi()
         {
+            _logger.LogInformation("Сообщение в логер из GetHi");
             return Ok("Hi, I am cpu controller");
         }
 
@@ -43,6 +44,7 @@ namespace MetricsManager.Controllers
         [HttpGet("cluster/from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsFromAllCluster([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
+            _logger.LogInformation("Сообщение из  GetMetricsFromAllCluster");
             return Ok();
         }
 
@@ -50,12 +52,14 @@ namespace MetricsManager.Controllers
         [HttpGet("agent/{agentId}")]
         public IActionResult GetMetricsFromAgent([FromRoute] int agentId)
         {
+            _logger.LogInformation("Сообщение из  GetMetricsFromAgent");
             return Ok();
         }
 
         [HttpGet("cluster")]
         public IActionResult GetMetricsFromCluster()
         {
+            _logger.LogInformation("Сообщение из  GetMetricsFromCluster");
             return Ok();
         }
 
