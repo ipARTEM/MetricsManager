@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace MetricsAgent.Models
 {
-    public class CpuMetricsDto
+    public class CpuMetricsDto: BaseDto
     {
-        public int Id { get; set; }
+        
         
         public int Value { get; set; }
 

@@ -10,7 +10,7 @@ namespace MetricsAgent.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseController<Dto> : ControllerBase where Dto :new ()
+    public class BaseController<Dto> : ControllerBase where Dto :BaseDto, new ()
     {
         [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
         public virtual Dto GetMetricsFromAgent(
