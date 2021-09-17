@@ -63,7 +63,7 @@ namespace MetricsAgent.Controllers
 
             foreach (var metric in metrics)
             {
-                response.Metrics.Add(new CpuMetricsDto { Time = metric.Time, Value = metric.Value, Id = metric.Id });
+                response.Metrics.Add(new CpuMetricsDto { Time = metric.Time, Value = metric.Value, ID = metric.Id });
             }
 
             return Ok(response);
