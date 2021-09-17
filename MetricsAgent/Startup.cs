@@ -1,3 +1,5 @@
+using AutoMapper;
+using Core;
 using MetricsAgent.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +34,15 @@ namespace MetricsAgent
 
             ConfigureSqlLiteConnection(services);
             services.AddScoped<ICpuMetricsRepository, CpuMetricsRepository>();
+            services.AddTransient<INotifier, Notifier1>();
+            services.AddTransient<INotifierMediatorService, NotifierMediatorService>();
+
+            var mapperConfiguration = new MapperConfiguration(mp => mp.AddProfile(new MapperProfile()));
+            var mapper = mapperConfiguration.CreateMapper();
+            services.AddSingleton(mapper);
+
+
+
 
 
             //services.AddSwaggerGen(c =>

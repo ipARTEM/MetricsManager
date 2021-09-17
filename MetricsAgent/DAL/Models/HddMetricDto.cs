@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MetricsAgent.Models
 {
-    public class HddMetricsDto: BaseDto
+    public class HddMetricDto: BaseDto
     {
 
         public Guid UniqueName { get; set; }

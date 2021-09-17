@@ -7,7 +7,7 @@ namespace MetricsAgent.Models
 {
     public class AllCpuMetricsResponse
     {
-        public List<CpuMetricsDto> Metrics { get; set; }
+        public List<CpuMetricDto> Metrics { get; set; }
 
     }
 }

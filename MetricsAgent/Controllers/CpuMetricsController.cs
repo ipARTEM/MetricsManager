@@ -1,4 +1,5 @@
-﻿using MetricsAgent.Models;
+﻿using AutoMapper;
+using MetricsAgent.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,7 +13,7 @@ namespace MetricsAgent.Controllers
 {
     [Route("api/metrics/cpu")]
     [ApiController]
-    public class CpuMetricsController : BaseController<CpuMetricsDto>
+    public class CpuMetricsController : BaseController<CpuMetricDto>
     {
         private readonly ILogger<CpuMetricsController> _logger;
         //public CpuMetricsController(ILogger<CpuMetricsController> logger)
@@ -58,16 +59,59 @@ namespace MetricsAgent.Controllers
 
             var response = new AllCpuMetricsResponse()
             {
-                Metrics = new List<CpuMetricsDto>()
+                Metrics = new List<CpuMetricDto>()
             };
 
             foreach (var metric in metrics)
             {
-                response.Metrics.Add(new CpuMetricsDto { Time = metric.Time, Value = metric.Value, ID = metric.Id });
+                response.Metrics.Add(new CpuMetricDto { Time = metric.Time, Value = metric.Value, ID = metric.Id });
             }
 
             return Ok(response);
         }
+
+        [HttpGet("allmapper")]
+        public IActionResult GetAllMapper()
+        {
+            IList<CpuMetric> metrics = repository.GetAll();
+
+            var response = new AllCpuMetricsResponse()
+            {
+                Metrics = new List<CpuMetricDto>()
+            };
+
+            foreach (var metric in metrics)
+            {
+                response.Metrics.Add(
+                    new CpuMetricDto
+                    {
+                        Time = metric.Time,
+                        Value = metric.Value,
+                        ID = metric.Id
+                    });
+            }
+            return Ok(response);
+        }
+
+        [HttpGet("allautomapper")]
+        public IActionResult GetAllAutoMapper()
+        {
+            // задаем конфигурацию для мапера. Первый обобщенный параметр -- тип объекта источника, второй -- тип объекта в который перетекут данные из источника
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<CpuMetric, CpuMetricDto>());
+            var mapper = config.CreateMapper();
+            IList<CpuMetric> metrics = repository.GetAll();
+            var response = new AllCpuMetricsResponse()
+            {
+                Metrics = new List<CpuMetricDto>()
+            };
+            foreach (var metric in metrics)
+            {
+                // добавляем объекты в ответ при помощи мапера
+                response.Metrics.Add(mapper.Map<CpuMetricDto>(metric));
+            }
+            return Ok(response);
+        }
+
 
 
 
