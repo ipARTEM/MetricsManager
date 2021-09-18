@@ -16,7 +16,7 @@ namespace TestEFDB
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         public DbSet<CpuMetric> CpuMetrics { get; set; }
@@ -26,7 +26,7 @@ namespace TestEFDB
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<CpuMetric>().Property(a => a.Value).HasColumnType("varchar(200)");
+            modelBuilder.Entity<CpuMetric>().Property(a => a.Value);
         }
     }
 }
