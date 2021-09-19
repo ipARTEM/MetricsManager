@@ -7,6 +7,6 @@ namespace MetricsAgent.Models
 {
     public class BaseDto
     {
-        public long ID { get; set; }
+        public long Id { get; set; }
     }
 }

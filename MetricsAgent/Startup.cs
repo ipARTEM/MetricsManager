@@ -1,10 +1,13 @@
 using AutoMapper;
 using Core;
+using FluentMigrator.Runner;
+using MetricsAgent.DAL;
 using MetricsAgent.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,8 +35,11 @@ namespace MetricsAgent
         {
             services.AddControllers();
 
-            ConfigureSqlLiteConnection(services);
-            services.AddScoped<ICpuMetricsRepository, CpuMetricsRepository>();
+            services.AddDbContext<AppDbContext>(options =>
+            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+            //ConfigureSqlLiteConnection(services);
+            //services.AddScoped<ICpuMetricsRepository, CpuMetricsRepository>();
             services.AddTransient<INotifier, Notifier1>();
             services.AddTransient<INotifierMediatorService, NotifierMediatorService>();
 
@@ -51,35 +57,35 @@ namespace MetricsAgent
             //});
         }
 
-        private void ConfigureSqlLiteConnection(IServiceCollection services)
-        {
-            const string connectionString = "Data Source=metrics.db;Version=3;Pooling=true;Max Pool Size=100;";
-            var connection = new SQLiteConnection(connectionString);
-            connection.Open();
-            PrepareSchema(connection);
-        }
+        //private void ConfigureSqlLiteConnection(IServiceCollection services)
+        //{
+        //    const string connectionString = "Data Source=metrics.db;Version=3;Pooling=true;Max Pool Size=100;";
+        //    var connection = new SQLiteConnection(connectionString);
+        //    connection.Open();
+        //    PrepareSchema(connection);
+        //}
 
-        private void PrepareSchema(SQLiteConnection connection)
-        {
-            using (var command = new SQLiteCommand(connection))
-            {
-                // задаем новый текст команды для выполнения
-                // удаляем таблицу с метриками если она существует в базе данных
-                command.CommandText = "DROP TABLE IF EXISTS cpumetrics";
-                // отправляем запрос в базу данных
-                command.ExecuteNonQuery();
+        //private void PrepareSchema(SQLiteConnection connection)
+        //{
+        //    using (var command = new SQLiteCommand(connection))
+        //    {
+        //        // задаем новый текст команды для выполнения
+        //        // удаляем таблицу с метриками если она существует в базе данных
+        //        command.CommandText = "DROP TABLE IF EXISTS cpumetrics";
+        //        // отправляем запрос в базу данных
+        //        command.ExecuteNonQuery();
 
 
-                command.CommandText = @"CREATE TABLE cpumetrics(id INTEGER PRIMARY KEY,
-                    value INT, time INT)";
-                command.ExecuteNonQuery();
-            }
-        }
+        //        command.CommandText = @"CREATE TABLE cpumetrics(id INTEGER PRIMARY KEY,
+        //            value INT, time INT)";
+        //        command.ExecuteNonQuery();
+        //    }
+        //}
 
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMigrationRunner migrationRunner)
         {
             if (env.IsDevelopment())
             {
@@ -98,6 +104,10 @@ namespace MetricsAgent
             {
                 endpoints.MapControllers();
             });
+
+            // запускаем миграции
+            //migrationRunner.MigrateUp();
+
         }
     }
 }
