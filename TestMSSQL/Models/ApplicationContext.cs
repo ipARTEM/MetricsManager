@@ -14,5 +14,7 @@ namespace TestMSSQL.Models
             Database.EnsureCreated();   // создаем базу данных при первом обращении
         }
         public DbSet<User> Users { get; set; }
+
+        public DbSet<CpuMetric> CpuMetrics { get; set; }
     }
 }

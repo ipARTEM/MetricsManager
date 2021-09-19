@@ -1,14 +1,28 @@
-﻿@model IEnumerable<TestMSSQL.Models.User>
+﻿@model IEnumerable<TestMSSQL.Models.CpuMetric>
 @{
     ViewBag.Title = "Все пользователи";
 }
-<a asp-action="Create">Добавить пользователя</a>
-<table class="table">
+<a asp-action="Create">Добавить пользователя MetricManager</a>
+
+@*<table class="table">
+    <tr><td>Id</td><td>Time</td><td>Value</td></tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.Id</td>
+    <td>@item.Time</td>
+    <td>@item.Value</td>
+</tr>
+    }
+</table>*@
+
+
+@*<table class="table">
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.Name</td>
+            <td>@item.Id</td>
             <td>
                 <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">Подробнее</a> |
                 <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.Id">Изменить</a> |
@@ -16,4 +30,4 @@
             </td>
         </tr>
     }
-</table>
+</table>*@
