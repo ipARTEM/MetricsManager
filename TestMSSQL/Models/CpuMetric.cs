@@ -11,7 +11,7 @@ namespace TestMSSQL.Models
 
         public int Value { get; set; }
 
-        public TimeSpan Time { get; set; }
+        public int Time { get; set; }
 
     }
 }
