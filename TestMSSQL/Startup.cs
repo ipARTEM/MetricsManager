@@ -1,4 +1,5 @@
 
+using Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,6 +43,7 @@ namespace TestMSSQL
             services.AddSingleton<IJobFactory, JobFactory>();
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
 
+
             //добавляем нашу задачу
             services.AddSingleton<CpuMetricJob>();
             services.AddSingleton(new JobSchedule(jobType: typeof(CpuMetricJob),
@@ -49,6 +51,7 @@ namespace TestMSSQL
 
             services.AddHostedService<QuartzHostedService>();
 
+            //services.AddScoped<IDbRepository<CpuMetric>,DbRepository<CpuMetric>>();
             
 
 

@@ -24,7 +24,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEF", "TestEF\TestEF.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEFDB", "TestEFDB\TestEFDB.csproj", "{F9D24316-E144-4FAD-8B5D-636D70E60782}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMSSQL", "TestMSSQL\TestMSSQL.csproj", "{9DEF65BC-C7CA-4110-8FD5-9F4C6646A40F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMSSQL", "TestMSSQL\TestMSSQL.csproj", "{9DEF65BC-C7CA-4110-8FD5-9F4C6646A40F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricsAgentEFMSSQL", "MetricsAgentEFMSSQL\MetricsAgentEFMSSQL.csproj", "{13ED2C86-9880-4C25-91DE-15C8852C43EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +70,10 @@ Global
 		{9DEF65BC-C7CA-4110-8FD5-9F4C6646A40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DEF65BC-C7CA-4110-8FD5-9F4C6646A40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DEF65BC-C7CA-4110-8FD5-9F4C6646A40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13ED2C86-9880-4C25-91DE-15C8852C43EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13ED2C86-9880-4C25-91DE-15C8852C43EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13ED2C86-9880-4C25-91DE-15C8852C43EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13ED2C86-9880-4C25-91DE-15C8852C43EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

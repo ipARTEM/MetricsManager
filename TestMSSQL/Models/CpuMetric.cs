@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace TestMSSQL.Models
 {
-    public class CpuMetric
+    public class CpuMetric :BaseEntity
     {
-        public int Id { get; set; }
+        
 
         public int Value { get; set; }
 
-        public int Time { get; set; }
+        public DateTime Time { get; set; }
 
     }
 }

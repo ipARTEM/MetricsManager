@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Core;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,14 +14,15 @@ namespace TestMSSQL.Controllers
     public class CpuMetricController : Controller
     {
         private readonly ILogger<CpuMetricController> _logger;
-
+        private readonly IDbRepository<CpuMetric> _cpuMetricyRepo;
 
 
         private ApplicationContext db;
-        public CpuMetricController(ApplicationContext context, ILogger<CpuMetricController> logger)
+        public CpuMetricController(ApplicationContext context, ILogger<CpuMetricController> logger, IDbRepository<CpuMetric> cpuMetricyRepo)
         {
             db = context;
             _logger = logger;
+            _cpuMetricyRepo = cpuMetricyRepo;
         }
 
 
