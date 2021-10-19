@@ -20,6 +20,10 @@ namespace MetricsAgent.Controllers
             _logger.LogDebug(1, "NLog встроен в DotNetMetricsController");
         }
 
+        public DotNetMetricsController()
+        {
+        }
+
         private DotNetMetricsController repository;
 
         //public DotNetMetricsController(ICpuMetricsRepository repository)

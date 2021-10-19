@@ -30,12 +30,22 @@ namespace MetricsAgent.Controllers
         }
 
         private ICpuMetricsRepository repository;
+        private ICpuMetricsRepository @object;
 
         public CpuMetricsController(ICpuMetricsRepository repository, ILogger<CpuMetricsController> logger)
         {
             this.repository = repository;
             _logger = logger;
             _logger.LogDebug(1, "NLog встроен в CpuMetricsController");
+        }
+
+        public CpuMetricsController()
+        {
+        }
+
+        public CpuMetricsController(ICpuMetricsRepository @object)
+        {
+            this.@object = @object;
         }
 
         [HttpPost("create")]

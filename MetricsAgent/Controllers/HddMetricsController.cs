@@ -22,6 +22,11 @@ namespace MetricsAgent.Controllers
         private readonly IMapper mapper;
 
         private readonly ILogger<HddMetricsController> _logger;
+
+        public HddMetricsController()
+        {
+        }
+
         public HddMetricsController(IHddMetricsRepository repository, ILogger<HddMetricsController> logger, IMapper mapper)
         {
             this.repository = repository;

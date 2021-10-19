@@ -1,6 +1,8 @@
 using AutoMapper;
 using Core;
 using FluentMigrator.Runner;
+using Metrics.Services;
+using Metrics.Services.Interfaces;
 using MetricsAgent.DAL;
 using MetricsAgent.Models;
 using Microsoft.AspNetCore.Builder;
@@ -30,7 +32,6 @@ namespace MetricsAgent
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -40,6 +41,8 @@ namespace MetricsAgent
 
             //ConfigureSqlLiteConnection(services);
             //services.AddScoped<ICpuMetricsRepository, CpuMetricsRepository>();
+            services.AddScoped<ICpuMetricsService, CpuMetricsService>();
+
             services.AddTransient<INotifier, Notifier1>();
             services.AddTransient<INotifierMediatorService, NotifierMediatorService>();
 
@@ -57,37 +60,11 @@ namespace MetricsAgent
             });
         }
 
-        //private void ConfigureSqlLiteConnection(IServiceCollection services)
-        //{
-        //    const string connectionString = "Data Source=metrics.db;Version=3;Pooling=true;Max Pool Size=100;";
-        //    var connection = new SQLiteConnection(connectionString);
-        //    connection.Open();
-        //    PrepareSchema(connection);
-        //}
-
-        //private void PrepareSchema(SQLiteConnection connection)
-        //{
-        //    using (var command = new SQLiteCommand(connection))
-        //    {
-        //        // задаем новый текст команды для выполнения
-        //        // удаляем таблицу с метриками если она существует в базе данных
-        //        command.CommandText = "DROP TABLE IF EXISTS cpumetrics";
-        //        // отправляем запрос в базу данных
-        //        command.ExecuteNonQuery();
-
-
-        //        command.CommandText = @"CREATE TABLE cpumetrics(id INTEGER PRIMARY KEY,
-        //            value INT, time INT)";
-        //        command.ExecuteNonQuery();
-        //    }
-        //}
+       
 
 
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env
-            //, IMigrationRunner migrationRunner
-            )
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

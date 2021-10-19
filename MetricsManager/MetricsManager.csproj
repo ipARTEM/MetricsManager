@@ -12,4 +12,8 @@
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.14.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Metrics.Services\Metrics.Services.csproj" />
+  </ItemGroup>
+
 </Project>

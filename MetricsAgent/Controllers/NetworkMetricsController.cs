@@ -13,6 +13,11 @@ namespace MetricsAgent.Controllers
     public class NetworkMetricsController : ControllerBase
     {
         private readonly ILogger<NetworkMetricsController> _logger;
+
+        public NetworkMetricsController()
+        {
+        }
+
         public NetworkMetricsController(ILogger<NetworkMetricsController> logger)
         {
             _logger = logger;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Metrics.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,9 +22,16 @@ namespace MetricsManager.Controllers
         }
 
         [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        public IActionResult GetMetricsFromAgent(
+            [FromServices] ICpuMetricsService service,
+            [FromRoute] int agentId, 
+            [FromRoute] TimeSpan fromTime, 
+            [FromRoute] TimeSpan toTime)
         {
             _logger.LogInformation("Сообщение в логер из GetMetricsFromAgent");
+
+            service.GetMetricsFromAgent();
+
             return Ok();
         }
 
@@ -42,7 +50,9 @@ namespace MetricsManager.Controllers
         //}
 
         [HttpGet("cluster/from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsFromAllCluster([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        public IActionResult GetMetricsFromAllCluster(
+            [FromRoute] TimeSpan fromTime, 
+            [FromRoute] TimeSpan toTime)
         {
             _logger.LogInformation("Сообщение из  GetMetricsFromAllCluster");
             return Ok();
@@ -50,7 +60,7 @@ namespace MetricsManager.Controllers
 
         //за всё время
         [HttpGet("agent/{agentId}")]
-        public IActionResult GetMetricsFromAgent([FromRoute] int agentId)
+        public IActionResult GetMetricsFromAllAgent([FromRoute] int agentId)
         {
             _logger.LogInformation("Сообщение из  GetMetricsFromAgent");
             return Ok();
