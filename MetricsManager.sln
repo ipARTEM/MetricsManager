@@ -28,7 +28,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMSSQL", "TestMSSQL\Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsAgentEFMSSQL", "MetricsAgentEFMSSQL\MetricsAgentEFMSSQL.csproj", "{13ED2C86-9880-4C25-91DE-15C8852C43EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrics.Services", "Metrics.Services\Metrics.Services.csproj", "{27632A37-97D8-4C50-A1A8-76FBD409E86F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics.Services", "Metrics.Services\Metrics.Services.csproj", "{27632A37-97D8-4C50-A1A8-76FBD409E86F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricsAgent.Dapper.MSSQL", "MetricsAgent.Dapper.MSSQL\MetricsAgent.Dapper.MSSQL.csproj", "{B2B18B62-9E26-49A7-B35E-87C5FB2F90E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +82,10 @@ Global
 		{27632A37-97D8-4C50-A1A8-76FBD409E86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27632A37-97D8-4C50-A1A8-76FBD409E86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27632A37-97D8-4C50-A1A8-76FBD409E86F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2B18B62-9E26-49A7-B35E-87C5FB2F90E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2B18B62-9E26-49A7-B35E-87C5FB2F90E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2B18B62-9E26-49A7-B35E-87C5FB2F90E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2B18B62-9E26-49A7-B35E-87C5FB2F90E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
