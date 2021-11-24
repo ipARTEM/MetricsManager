@@ -30,8 +30,6 @@ namespace TestMSSQL
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            
             string connection = Configuration.GetConnectionString("DefaultConnection");
             
             services.AddDbContext<ApplicationContext>(options =>
@@ -39,7 +37,7 @@ namespace TestMSSQL
 
             services.AddControllersWithViews();
 
-            //добавляем сервесы
+            //добавляем сервисы
             services.AddSingleton<IJobFactory, JobFactory>();
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
 
@@ -52,13 +50,10 @@ namespace TestMSSQL
             services.AddHostedService<QuartzHostedService>();
 
             //services.AddScoped<IDbRepository<CpuMetric>,DbRepository<CpuMetric>>();
-            
-
-
         }
 
       
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)     //pipeline
         {
             if (env.IsDevelopment())
             {
@@ -75,7 +70,7 @@ namespace TestMSSQL
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthorization();         //middlware компоненты
 
             app.UseEndpoints(endpoints =>
             {
