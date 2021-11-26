@@ -24,7 +24,7 @@ namespace MADapperTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = "Server=ARTEM\\ARTEM;Initial Catalog=userstore;Integrated Security=True";
+            string connectionString = "Server=ARTEM\\ARTEM;Database=userstore;Trusted_Connection=True;MultipleActiveResultSets=true";
             services.AddTransient<IUserRepository, UserRepository>(provider => new UserRepository(connectionString));
 
             services.AddControllersWithViews();
