@@ -9,7 +9,15 @@ namespace MetricsAgent.Dapper.MSSQL.DAL.Models
     {
         public int Value { get; set; }
 
-        public TimeSpan Time { get; set; }
+        //public TimeSpan Time { get; set; }
+
+        public int Period { get; set; }
+
+        public string Name { get; set; }
+
+
+
+
 
 
     }

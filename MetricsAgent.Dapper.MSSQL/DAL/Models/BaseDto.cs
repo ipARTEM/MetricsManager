@@ -7,6 +7,6 @@ namespace MetricsAgent.Dapper.MSSQL.DAL.Models
 {
     public class BaseDto
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -22,4 +22,9 @@ namespace MetricsAgent.DAL.Migrations
             Delete.Table("cpumetrics");
         }
     }
+
+    internal record sdf
+    {
+
+    }
 }
